@@ -1,4 +1,15 @@
 
+
+let winner
+let aicount 
+let playercount 
+let drawcount
+
+playercount = 0
+aicount = 0
+drawcount = 0
+
+
 //Allows user to input selection
 
 function myChoice() {
@@ -17,7 +28,7 @@ function myChoice() {
         return result = 3
     }
     else  {
-        myChoice()
+        return result = 4
     }
 
     }
@@ -51,7 +62,7 @@ else if (aiResult == 7 || aiResult == 8 || aiResult == 9) {
 
 }
 
-function winner() {
+function playround() {
 
 myChoice()
 yourChoice()
@@ -65,38 +76,83 @@ yourChoice()
 //Draw scenarios
     else if (result == 1 && aiNumber == 1) { 
         alert("Rock vs rock - no winner")
+        return winner = "D"
     }
     else if (result == 2 && aiNumber == 2) { 
         alert("Paper vs paper - no winner")
+        return winner = "D"
     }
     else if (result == 3 && aiNumber == 3) { 
         alert("Scissors vs Scissors - no winner")
+        return winner = "D"
     }
     
 //player wins scenarios
     else if (result == 1 && aiNumber == 3) { 
         alert("Rock vs Scissors - You Win")
+        return winner = "P"
     }
     else if (result == 2 && aiNumber == 1) { 
         alert("Paper vs Rock - You Win")
+        return winner = "P"
     }
     else if (result == 3 && aiNumber == 2) { 
         alert("Scissors vs Paper - You Win")
+        return winner = "P"
     }
 
 //player loses scenarios
 else if (result == 3 && aiNumber == 1) { 
     alert("Scissors vs Rock - You Lose")
+    return winner = "ai"
 }
 else if (result == 1 && aiNumber == 2) { 
     alert("Rock vs Paper - You Lose")
+    return winner = "ai"
 }
 else if (result == 2 && aiNumber == 3) { 
-    alert("Paper vs Scissors  - You Win")
+    alert("Paper vs Scissors  - You Lose")
+    return winner = "ai"
 }
 
 
 
 }
 
-winner()
+function game () {
+
+
+    
+for (let i = 0; i <5; i++) {
+
+    playround()
+
+    if (winner === "P") {
+    playercount = playercount +1
+    }
+    else if (winner === "ai") {
+    aicount = aicount +1
+    }
+    else if (winner === "D") {
+    drawcount = drawcount +1
+    }
+
+}
+
+}
+
+
+
+
+game()
+
+
+if (playercount == aicount) {
+    alert (`It's a draw. ${drawcount} each`)
+}
+else if (playercount > aicount) {
+    alert (`You win! ${playercount} - ${aicount}`)
+}
+else if (playercount < aicount) {
+    alert (`You lose! ${aicount} - ${playercount}`)
+}
